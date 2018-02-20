@@ -3,6 +3,7 @@ title: "심볼릭 링크 생성하고 권한 주기"
 category: "tech"
 cover: "https://unsplash.it/400/300/?random?AngelsofMist"
 date: "2013-08-12 13:34:58 +0900"
+slug: "add-and-authorize-symbolic-links"
 tags:
   - centos
   - linux
@@ -13,14 +14,14 @@ tags:
 프로그램내에서 각각 관리자들이 백업을 복구해줄수 있어야 하기 때문에 해당 폴더안에 십볼릭 링크를 만들어주었다.
 
 심볼릭 링크 생성
-{% highlight bash %}
+```shell
 # ln -s [타겟위치] [심볼릭 링크 이름]
-{% endhighlight %}
+```
 
 권한 바꿔주기
-{% highlight bash %}
+```shell
 # chown -h 사용자:그룹 [심볼릭 링크 이름]
-{% endhighlight %}
+```
 
 간단하게 -h 옵션만 붙여주면 된다.
 

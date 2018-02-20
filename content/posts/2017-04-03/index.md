@@ -3,6 +3,7 @@ title: "React와 Redux를 공부하기 위한 앱 세팅"
 category: "tech"
 cover: "https://unsplash.it/400/300/?random?AngelsofMist"
 date: "2017-04-03 01:07:21 +0900"
+slug: "setting-react-and-redux-app"
 tags: 
   - react
   - redux

@@ -15,9 +15,9 @@ nginx 와 php-fpm 을 연동할 때 지금은 크게 차이가 없지만 예전�
 
 
 구글링해보니 크게 성능차이는 없는것 같지만 그래도 이게 좋다고 하니 다 바꿔봤다.
-{% highlight bash %}
+```shell
 # vi /etc/php-fpm.d/www.conf
-{% endhighlight %}
+```
 
 
 ............
@@ -27,9 +27,9 @@ listen = 127.0.0.1:9000
 ;listen = 127.0.0.1:9000
 listen = /tmp/php5-fpm.sock
 
-{% highlight bash %}
+```shell
 # vi /etc/nginx/conf.d/virtual.conf
-{% endhighlight %}
+```
 
 ..........
 fastcgi_pass 127.0.0.1:9000
@@ -37,10 +37,10 @@ fastcgi_pass 127.0.0.1:9000
 
 fastcgi_pass unix:/tmp/php5-fpm.sock
 
-{% highlight bash %}
+```shell
 # service php-fpm reload
 # service nginx restart
-{% endhighlight %}
+```
 
 
 php5-fpm.sock 파일이 없어서 뭐지뭐지했는데 기본으로 TCP포트를 사용하고 있다면 자동으로 생성된다!~

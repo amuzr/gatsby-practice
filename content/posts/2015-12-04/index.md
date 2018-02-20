@@ -3,6 +3,7 @@ title: "/etc/messages 에서 out of memory 가 일어나서 프로세스가 종�
 category: "tech"
 cover: "https://unsplash.it/400/300/?random?AngelsofMist"
 date: "2015-12-04 16:51:36 +0900"
+slug: "oom-crash-on-linux"
 tags: 
   - centos
   - linux

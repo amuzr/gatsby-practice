@@ -3,6 +3,7 @@ title: "월간 코딩 사이트 만들기"
 category: "tech"
 cover: "https://unsplash.it/400/300/?random?AngelsofMist"
 date: "2017-07-30 17:36:16 +0900"
+slug: "make-monthly-coding-site"
 tags: 
  - react
  - redux

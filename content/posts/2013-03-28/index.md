@@ -24,7 +24,7 @@ tags:
 처음 centos 설치 후 아무 세팅이 되어있지 않은 상태에서 root 권한으로 진행을 하도록 한다.
 먼저 프로그램들을 전부 update 해준다.
 
-```shall
+```shell
 #yum update
 ```
 그리고 `yum repolist`를 설정해 주어야 한다.
@@ -33,12 +33,12 @@ tags:
 ![]({{ site.url }}/assets/repolist.png)
 
 ##### Atomic 저장소 설치
-```
+```shell
 #wget -q -O - http://www.atomicorp.com/installers/atomic | sh
 ```
 
 ##### RHEL EPEL 저장소 설치
-```
+```shell
 wget http://dl.fedoraproject.org/pub/epel/6/x86_64/epel-release-6-8.noarch.rpm
 wget http://rpms.famillecollet.com/enterprise/remi-release-6.rpm
 sudo rpm -Uvh remi-release-6*.rpm epel-release-6*.rpm

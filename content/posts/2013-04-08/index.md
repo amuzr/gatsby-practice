@@ -44,33 +44,33 @@ wget 으로 받을때 윈도환경에서 크롬으로 다운받고 받는 도중
 
 그리고 local 로 옮겨준다.
 
-{% highlight bash %}
+```shell
 # cd /usr/local/src
 # wget http://wpc.29c4.edgecastcdn.net/8029C4/downloads/software/jira/downloads/atlassian-jira-5.2.10-war.tar.gz
 # tar -zxvf atlassian-jira-5.2.10-war.tar.gz
 # mv atlassian-jira-5.2.10-war /usr/local/atlassian-jira-5.2.10
 # cd /usr/local/atlassian-jira-5.2.10
-{% endhighlight %}
+```
 
 이제 build 를 해야하는데 build 를 하기전에 어플리케이션이 돌때 사용하는 파일들을 어디에 저장할지 지정해주어야한다.
 (WAR 압축 해제를 시킬 곳.)
 vi 에디터로 아래와 같이 수정. 뭐 이파일 수정하지말라고 하는데 그냥 해도된다..
 원래 공식홈에서는 JIRA_HOME 이라는 환경변수를 주고 거기에 이 경로를 넣어주라고 하는데.. 이걸로는 잘설치가 안되었다.
 
-{% highlight bash %}
+```shell
 # vi edit-webapp/WEB-INF/classes/jira-application.properties
-{% endhighlight %}
+```
 
 {% highlight properties %}
 jira.home = /usr/local/jira-5.2.10
-{% endhighlight %}
+```
 
 그리고 build 해준다.
 오류 없이 잘끝나면 성공!
 
-{% highlight bash %}
+```shell
  ./build.sh
-{% endhighlight %}
+```
 
 이제 톰캣에 이놈을 붙여주어야 한다.
 그러기전에 아래처럼 환경설정 파일을 하나 만들어주자. 자바 힙메모리를 늘려준다거나 하는거..
@@ -82,33 +82,33 @@ XX:MaxPermSize - Permanant Area Size 를 말하는거 같은데.. 어째든 셋�
 
 그리고 아래와 같은 파일을 tomcat 6 에도 복사해준다. (Confluence 설치할 때도 쓴다.)
 
-{% highlight bash %}
+```shell
 # cd /usr/local/tomcat7
 # touch bin/setenv.sh
 # vi bin/setenv.sh
-{% endhighlight %}
+```
 
-{% highlight bash %}
+```shell
 export CATALINA_OPTS="-Dorg.apache.jasper.runtime.BodyContentImpl.LIMIT_BUFFER=true -Dmail.mime.decodeparameters=true -Xms768m -Xmx768m -XX:MaxPermSize=768m"
-{% endhighlight %}
+```
 
-{% highlight bash %}
+```shell
 # cp bin/setenv.sh /usr/local/tomcat6/bin/
-{% endhighlight %}
+```
 
 이제 server.xml 을 수정하면 되는데 공홈메뉴얼에서는 이렇게 설명하고 있다.
 build 된 디렉토리에서
 dist-tomcat/tomcat-6/jira.xml 파일의 내용을 복사해서 넣어줘라!
 이게 그 내용이니까 그냥 복사 붙여넣기 하자~!
 
-{% highlight bash %}
+```shell
 # vi /usr/local/tomcat7/conf/server.xml
-{% endhighlight %}
+```
 
 요로코롬 Host 어쩌구 시작하는 곳 밑에 넣어준다.
 ...
 
-{% highlight xml %}
+```xml
 <Host name="localhost"  appBase="webapps"
             unpackWARs="true" autoDeploy="true" xmlValidation="false" xmlNamespaceAware="false">
 
@@ -119,7 +119,7 @@ dist-tomcat/tomcat-6/jira.xml 파일의 내용을 복사해서 넣어줘라!
     <Manager pathname=""/>
 
 </Context>
-{% endhighlight %}
+```
 
 그리고 mysql 드라이버와 관련 라이브러리들을 복사해서 넣어주어야 한다. 다운은 요기서.
 http://dev.mysql.com/downloads/connector/j
@@ -131,9 +131,9 @@ http://dev.mysql.com/downloads/connector/j
 
 mysql database 를 하나 만들자.
 
-{% highlight sql %}
+```sql
 CREATE DATABASE jira CHARACTER SET utf8 COLLATE utf8_bin;
-{% endhighlight %}
+```
 
 jdbc 를 이용하는방법과 DataSource를 이용하는 방법 두가지가 있는데 두번째방법은 아래를 참고..(ㅠㅠ해보질 않았다..)
 https://confluence.atlassian.com/display/JIRA/Installing+JIRA+on+Tomcat+6.0+or+7.0
@@ -146,11 +146,11 @@ nginx+mod_jk 를 통해 연결을 해주었다면 http://도메인/jira 로 접�
  nginx 랑 httpd 두놈은 프록시로 연결해주어야 한다.
 httpd 는 미리 8080 포트를 이용하게 세팅을 해놓았다 . 아래처럼 연결~!
 
-{% highlight bash %}
+```shell
 # vi /etc/nginx/conf.d/virtual.conf
-{% endhighlight %}
+```
 
-{% highlight text %}
+```
 ...
  server {
     listen       80;
@@ -167,57 +167,57 @@ httpd 는 미리 8080 포트를 이용하게 세팅을 해놓았다 . 아래처�
 
 }
 ...
-{% endhighlight %}
+```
 
-{% highlight bash %}
+```shell
 # vi /usr/local/apache2/conf/httpd.conf
-{% endhighlight %}
+```
 
 52번째줄 정도에 port 번호를 8080으로수정.
 
-{% highlight bash %}
+```shell
 # vi /etc/nginx/nginx.conf
-{% endhighlight %}
+```
 
 프록시 연결시간을 쪼~끔 늘려주자.
 
-{% highlight bash %}
+```shell
 #proxy & fastcgi setting
     proxy_read_timeout      1800s;
     proxy_buffer_size       32k;
     proxy_buffers           4 64k;
     proxy_busy_buffers_size 64k;
-{% endhighlight %}
+```
 
 세팅중 아래와 같은 에러들을 볼 수 있기 때문에 미리 조치한다.
 
 -java.netSocketException: Too many open files
 
-{% highlight bash %}
+```shell
 # ulimit -a
 # ulimit -n 4096
-{% endhighlight %}
+```
 
 재시작할때 같은 문제를 겪지 않기 위해
 
-{% highlight bash %}
+```shell
 # vi /etc/security/limits.conf
-{% endhighlight %}
+```
 
 파일에도 적용한다.
 
 -Packet for query is too large
 
-{% highlight bash %}
+```shell
 # vi /etc/my.cnf
-{% endhighlight %}
+```
 
-{% highlight bash %}
+```shell
 [mysqld]
 ...
 max_allowed_packet = 32M
 ...
-{% endhighlight %}
+```
 
 이렇게 수정한다.
 
@@ -230,30 +230,30 @@ Confluence 설치는 JIRA 와 크게 다르지 않다.
 데이터폴더를 confluence 설치폴더 안에 data 폴더를 만들고 넣어주었다.
 /usr/local/src 에 다운 받아서 압축을 풀었다고 가정하고 진행한다.
 
-{% highlight bash %}
+```shell
 # mv /usr/local/src/confluence-5.1 /usr/local/
 # cd /usr/local/confluence-5.1
 # vi confluence/WEB-INF/classes/confluence-init.properties
-{% endhighlight %}
+```
 
-{% highlight properties %}
+```
 ..
 confluence.home=/usr/local/confluence-5.1/data/
 ..
-{% endhighlight %}
+```
 
-{% highlight bash %}
+```shell
 # ./build.sh
 # vi /usr/local/tomcat6/conf/server.xml
-{% endhighlight %}
+```
 
-{% highlight xml %}
+```xml
 ...
 <Context path="/confluence" docBase="/usr/local/confluence-5.1/dist/confluence-5.1.war" debug="0" reloadable="true">
 
 </Context>
 ...
-{% endhighlight %}
+```
 
 confluence 도 mysql 을 쓰려면 mysql 커넥터드라이버를 넣어주어야 한다.
 

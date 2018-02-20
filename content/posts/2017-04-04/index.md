@@ -3,6 +3,7 @@ title: "Redux vs MobX"
 category: "tech"
 cover: "https://unsplash.it/400/300/?random?AngelsofMist"
 date: "2017-04-04 12:30:26 +0900"
+slug: "redux-vs-mobx"
 tags: 
   - react
   - redux

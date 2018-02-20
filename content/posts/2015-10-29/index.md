@@ -3,6 +3,7 @@ title: "REDIS 관련 에러"
 category: "tech"
 cover: "https://unsplash.it/400/300/?random?AngelsofMist"
 date: "2015-10-29 11:19:18 +0900"
+slug: "some-redis-error"
 tags: 
   - centos
   - linux

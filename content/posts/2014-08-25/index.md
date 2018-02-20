@@ -3,6 +3,7 @@ title: "PHP 에서 mkdir 같은 커맨드를 사용할 때 권한 문제"
 category: "tech"
 cover: "https://unsplash.it/400/300/?random?AngelsofMist"
 date: "2014-08-25 11:32:57 +0900"
+slug: "authority-problem-with-some-commands-on-php"
 tags: 
   - php
 ---
@@ -15,7 +16,7 @@ php 에서 mkdir 이나 chmod 등 권한을 필요로 하는 명령어를 입력
 
 
 현재 프로세스 사용자 확인 :
-{% highlight php %}
+```php
 $processUser = posix_getpwuid(posix_geteuid());
  echo($processUser['name']);
-{% endhighlight %}
+```

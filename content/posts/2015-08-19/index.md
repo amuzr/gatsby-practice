@@ -3,6 +3,7 @@ title: "CentOS에 vsftpd(ftp) 설치하기"
 category: "tech"
 cover: "https://unsplash.it/400/300/?random?AngelsofMist"
 date: "2015-08-19 18:57:48 +0900"
+slug: "install-vsftpd-in-centos"
 tags:
   - centos
   - linux
@@ -37,23 +38,23 @@ ftp 를 이용하여 제한적으로 폴더를 이용할 수 있도록 할 수 �
 
 #### 방화벽
 위에서 바꾼 xxx 포트를 열어주고, 패시브모드를 위한 포트도 열어준다.
-{% highlight bash %}
+```shell
 # iptables -A INPUT -p tcp -m state --state NEW -m tcp --dport xxx -j ACCEPT
 # iptables -A INPUT -p tcp -m state --state NEW -m tcp --dport 10090:10100 -j ACCEPT
 # service iptables save
 # service iptables restart
-{% endhighlight %}
+```
 
 + 잘 추가되었는지 확인하려면
-{% highlight bash %}
+```shell
 # cat /etc/sysconfig/iptables
-{% endhighlight %}
+```
 
 
 #### 실행
-{% highlight bash %}
+```shell
 # service vsftpd start
-{% endhighlight %}
+```
 
 접속해본다
 

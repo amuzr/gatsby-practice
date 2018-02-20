@@ -3,6 +3,7 @@ title: "CentOS 에서 커널 업데이트 할 때 생기는 문제"
 category: "tech"
 cover: "https://unsplash.it/400/300/?random?AngelsofMist"
 date: "2013-09-02 10:54:04 +0900"
+slug: "kernel-update-problem-on-centos"
 tags: 
   - centos
   - linux
@@ -36,7 +37,7 @@ installonly_limit=5 -> installonly_limit=2
 
 그리고 안쓰는 rpm 을 지운다.
 현재 사용중인 커널확인
-{% highlight bash %}
+```shell
 # uname -a
 --현재 사용중인 커널확인
 # uname -a
@@ -44,4 +45,4 @@ installonly_limit=5 -> installonly_limit=2
 # rpm -e kernel-2.6.32-71.el6.x86_64 kernel-2.6.32-71.29.1.el6.x86_64
 # yum update kernel
 # reboot
-{% endhighlight %}
+```

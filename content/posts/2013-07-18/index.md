@@ -21,22 +21,22 @@ CentOS 6.3 기준  설치방법
 
 저장소를 추가하고 다음과 같이 간단하게 설치해준다.
 
-{% highlight bash %}
+```
 # wget http://apt.sw.be/redhat/el6/en/x86_64/rpmforge/RPMS/rpmforge-release-0.5.3-1.el6.rf.x86_64.rpm
 # rpm -Uvh rpmforge-release*rpm
 # yum install jailkit
-{% endhighlight %}
+```
 
 이제 사용자를 추가해서 막아보자.
 /home/jail 은 가둬둘 곳.
-{% highlight bash %}
+```
 # jk_init -v -j /home/jail sftp scp jk_lsh
 # adduser user_name; passwd user_name
 # jk_jailuser -m -j /home/jail user_name
 
 # vi /home/jail/etc/jailkit/jk_lsh.ini
 
-{% endhighlight %}
+```
 
 아래 내용 추가.
 {% highlight ini %}
@@ -44,11 +44,11 @@ CentOS 6.3 기준  설치방법
 paths = /usr/libexec/openssh/
 executables = /usr/libesec/openssh/sftp-server
 allow_word_expansion = 0
-{% endhighlight %}
+```
 
-{% highlight bash %}
+```
 # sftp user_name@localhost
-{% endhighlight %}
+```
 
 sftp> 라고 나오면 성공이다 !
 

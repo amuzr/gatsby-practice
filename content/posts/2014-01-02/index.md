@@ -3,6 +3,7 @@ title: "vi 에서 여러줄 주석 처리하기"
 category: "tech"
 cover: "https://unsplash.it/400/300/?random?AngelsofMist"
 date: "2014-01-02 13:40:09 +0900"
+slug: "comment-out-in-vi"
 tags: 
   - vi
 ---

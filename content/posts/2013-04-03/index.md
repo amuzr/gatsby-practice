@@ -18,7 +18,7 @@ paradox 라는 디비가 있는지 오늘 처음 알았다..
 pecl 패키지 중에 있는데 정상적으로 설치가 안된다.
 
 아래와 같이 진행하자.
-{% highlight bash %}
+```shell
 # yum install intltool
 # wget http://jaist.dl.sourceforge.net/project/pxlib/pxlib/0.6.5/pxlib-0.6.5.tar.gz
 # tar -zxvf pxlib-0.6.5.tar.gz
@@ -33,19 +33,19 @@ pecl 패키지 중에 있는데 정상적으로 설치가 안된다.
 # ./configure
 # make
 # make install
-{% endhighlight %}
+```
 
 
 설정 파일생성을 해주고.
-{% highlight bash %}
+```shell
 # vi /etc/php.d/paradox.ini
-{% endhighlight %}
+```
 
 
 아래 내용을 넣어준다.
-{% highlight ini %}
+```
 ;Enable paradox extension module
 extension=paradox.so
-{% endhighlight %}
+```
 
 phpinfo 로 확인해 보자.
