@@ -34,45 +34,15 @@ class SocialLinks extends Component {
 
     return (
       <div className="social-links">
-        <RedditShareButton url={url} title={post.title}>
-          <RedditIcon round size={iconSize} />
-          <RedditShareCount url={url}>
-            {count => <div className="share-count">{filter(count)}</div>}
-          </RedditShareCount>
-        </RedditShareButton>
         <TwitterShareButton url={url} title={post.title}>
           <TwitterIcon round size={iconSize} />
         </TwitterShareButton>
-        <GooglePlusShareButton url={url}>
-          <GooglePlusIcon round size={iconSize} />
-          <GooglePlusShareCount url={url}>
-            {count => <div className="share-count">{filter(count)}</div>}
-          </GooglePlusShareCount>
-        </GooglePlusShareButton>
-        <FacebookShareButton
-          url={url}
-          title={post.title}
-          picture={post.cover}
-          description={postNode.excerpt}
-        >
+        <FacebookShareButton url={url} quote={post.title} >
           <FacebookIcon round size={iconSize} />
           <FacebookShareCount url={url}>
             {count => <div className="share-count">{filter(count)}</div>}
           </FacebookShareCount>
         </FacebookShareButton>
-        <LinkedinShareButton
-          url={url}
-          title={post.title}
-          description={postNode.excerpt}
-        >
-          <LinkedinIcon round size={iconSize} />
-          <LinkedinShareCount url={url}>
-            {count => <div className="share-count">{filter(count)}</div>}
-          </LinkedinShareCount>
-        </LinkedinShareButton>
-        <TelegramShareButton url={url}>
-          <TelegramIcon round size={iconSize} />
-        </TelegramShareButton>
       </div>
     );
   }

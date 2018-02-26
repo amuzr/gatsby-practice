@@ -39,7 +39,7 @@ CentOS 6.3 기준  설치방법
 ```
 
 아래 내용 추가.
-{% highlight ini %}
+```ini
 [user_name]
 paths = /usr/libexec/openssh/
 executables = /usr/libesec/openssh/sftp-server
